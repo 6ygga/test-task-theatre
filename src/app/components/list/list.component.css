@@ -1,0 +1,17 @@
+table {
+  width: 100%;
+}
+
+button {
+  margin: 5px;
+}
+
+.list__number-to-buy {
+  width: 40px;
+}
+
+.buttons-container {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}

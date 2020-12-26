@@ -1,0 +1,29 @@
+<p>Add new product</p>
+<div class="add-item__form">
+  <mat-form-field appearance="fill">
+    <mat-label>Product name</mat-label>
+    <input #product matInput placeholder="Product">
+  </mat-form-field>
+  <br>
+  <mat-form-field appearance="fill">
+    <mat-label>Price</mat-label>
+    <input #price matInput class="add-item__input" type="number" min="0" value="0">
+  </mat-form-field>
+  <br>
+  <mat-form-field appearance="fill">
+    <mat-label>Discount num</mat-label>
+    <input #discNum matInput class="add-item__input" type="number" min="0" value="0">
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label>Discount price</mat-label>
+    <input #discPrice matInput class="add-item__input" type="number" min="0" value="0">
+  </mat-form-field>
+</div>
+<div class="buttons-container">
+  <button mat-raised-button
+          (click)="addItem(product.value, price.value, discNum.value, discPrice.value)">Add
+  </button>
+  <button mat-raised-button
+          (click)="closeWindow()">Close
+  </button>
+</div>
