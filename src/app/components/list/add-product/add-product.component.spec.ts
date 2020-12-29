@@ -45,14 +45,20 @@ describe('AddProductComponent', () => {
     expect(mockDialogRef.close).toHaveBeenCalled();
   });
 
-  it('should call add new product method and close', () => {
+  it('should call close after add new product ', () => {
     component.addItem('', 1, 1, 1);
     expect(mockDialogRef.close).toHaveBeenCalled();
   });
 
   it('should call add new product method', () => {
-    spyAddItem = spyOn(dataService, 'addNewProduct');
-    component.addItem('', 1, 1, 1);
-    expect(dataService.addNewProduct).toHaveBeenCalled();
+    const spy: jasmine.Spy = spyOn(dataService, 'addNewProduct');
+    component.addItem('123', 1, 1, 1);
+    expect(spy).toHaveBeenCalled();
+  });
+
+  it('should call alert when product already exist', () => {
+    spyAddItem = spyOn(window, 'alert');
+    component.addItem('Popcorn', 1, 1, 1);
+    expect(spyAddItem).toHaveBeenCalled();
   });
 });

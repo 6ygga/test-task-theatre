@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import {MatDialogModule} from '@angular/material/dialog';
 
 import { ListComponent } from './list.component';
-import {DataService, ListItem} from '../../services/data.service';
+import {CartItem, DataService, ListItem} from '../../services/data.service';
 
 describe('ListComponent', () => {
   let component: ListComponent;
@@ -34,9 +34,24 @@ describe('ListComponent', () => {
   });
 
   it('should add new item to cart array', () => {
+    const saveToLSSpy: jasmine.Spy =
+      spyOn(component.dataService, 'saveCartToLocalStorage');
     spy = spyOn(component, 'calculateAmount').and.returnValue(1);
     component.onInput('CocaCola', '1');
     expect(component.cartList[0].name).toBe('CocaCola');
+    expect(saveToLSSpy).toHaveBeenCalled();
+  });
+
+  it('should save local storage 0 (saveCartToLocalStorage)', () => {
+    const cartItem: CartItem = {
+      name: 'Popcorn',
+      number: 1,
+      amount: 4
+    };
+    spy = spyOn(component.dataService, 'saveCartToLocalStorage')
+    spyOn(component.dataService, 'cartItemOnName').and.returnValue(cartItem);
+    component.onInput('Popcorn', '0');
+    expect(spy).toHaveBeenCalled();
   });
 
   it('should calculate amount 1 item', () => {

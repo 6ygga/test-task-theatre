@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 import {CartItem, DataService, ListItem} from '../../services/data.service';
 import {CartComponent} from '../cart/cart.component';
 import {AddProductComponent} from './add-product/add-product.component';
@@ -10,7 +10,7 @@ import {MatTableDataSource} from '@angular/material/table';
   templateUrl: './list.component.html',
   styleUrls: ['./list.component.css']
 })
-export class ListComponent{
+export class ListComponent {
   displayedColumns: string[] = ['name', 'price', 'buy'];
   cartList: CartItem[];
 
@@ -32,6 +32,15 @@ export class ListComponent{
     const currentCartItem = this.dataService.cartItemOnName(itemName);
     const currentListItem = this.dataService.listItemOnName(itemName);
 
+    if (numberToBuy === 0) {
+      if (currentCartItem) {
+        this.dataService.removeItemFromCart(currentCartItem);
+      }
+      currentCartItem.number = numberToBuy;
+      this.dataService.saveCartToLocalStorage();
+      return;
+    }
+
     if (!currentCartItem) {
       this.cartList.push({
         name: itemName,
@@ -42,6 +51,7 @@ export class ListComponent{
       currentCartItem.number = numberToBuy;
       currentCartItem.amount = this.calculateAmount(currentListItem, numberToBuy);
     }
+    this.dataService.saveCartToLocalStorage();
   }
 
   calculateAmount(currentListItem: ListItem, numToBuy: number): number {

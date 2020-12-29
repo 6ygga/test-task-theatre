@@ -45,4 +45,23 @@ describe('DataService', () => {
       .toEqual(obj);
   });
 
+  it('should return number from cart on Name', () => {
+    service.cartList = [{
+      name: 'Popcorn',
+      number: 1,
+      amount: 1
+    }];
+    const val = service.cartNumberOnName('Popcorn');
+    expect(val).toBe('1');
+  });
+
+  it('should return "0" when "name" is absent in cart', () => {
+    service.cartList = [{
+      name: 'Popcorn',
+      number: 1,
+      amount: 1
+    }];
+    const val = service.cartNumberOnName('Cola');
+    expect(val).toBe('0');
+  });
 });

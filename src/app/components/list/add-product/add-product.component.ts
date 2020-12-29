@@ -18,6 +18,11 @@ export class AddProductComponent{
   }
 
   addItem(product, price, discNum, discPrice): void {
+    if (this.dataService.listItems.find((item) => item.name === product)) {
+      window.alert('Product already exist');
+      return;
+    }
+
     this.dataService.addNewProduct(
       product,
       Number(price),

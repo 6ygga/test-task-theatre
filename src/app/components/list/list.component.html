@@ -18,7 +18,8 @@
       <input class="list__number-to-buy"
              #numToBuy
              type="number"
-             matInput value="0"
+             matInput
+             value="{{dataService.cartNumberOnName(element.name)}}"
              (change)="onInput(element.name, numToBuy.value)">
     </td>
   </ng-container>
