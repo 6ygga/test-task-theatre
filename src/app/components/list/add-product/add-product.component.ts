@@ -19,7 +19,14 @@ export class AddProductComponent{
 
   addItem(product: string, price: number, discNum: number, discPrice: number): void {
     const trimProduct = product.trim();
-    if (this.dataService.listItems.find((item) => item.name === trimProduct)) {
+
+    if (!trimProduct) {
+      window.alert('Product name is empty');
+      return;
+    }
+
+    if (this.dataService.listItems
+      .find((item) => item.name.toLowerCase() === trimProduct.toLowerCase())) {
       window.alert('Product already exist');
       return;
     }
