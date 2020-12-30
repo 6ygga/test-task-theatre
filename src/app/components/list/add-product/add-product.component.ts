@@ -17,14 +17,15 @@ export class AddProductComponent{
     this.dialogRef.close();
   }
 
-  addItem(product, price, discNum, discPrice): void {
-    if (this.dataService.listItems.find((item) => item.name === product)) {
+  addItem(product: string, price: number, discNum: number, discPrice: number): void {
+    const trimProduct = product.trim();
+    if (this.dataService.listItems.find((item) => item.name === trimProduct)) {
       window.alert('Product already exist');
       return;
     }
 
     this.dataService.addNewProduct(
-      product,
+      trimProduct,
       Number(price),
       Number(discNum),
       Number(discPrice)

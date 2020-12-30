@@ -19,6 +19,7 @@
              #numToBuy
              type="number"
              matInput
+             min="0"
              value="{{dataService.cartNumberOnName(element.name)}}"
              (change)="onInput(element.name, numToBuy.value)">
     </td>

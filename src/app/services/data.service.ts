@@ -29,8 +29,8 @@ export class DataService {
     this.cartList = this.cartFromLocalStorage() || [];
     this.listItems = this.productListFromLocalStorage() || [
       {name: 'Popcorn', price: 3, discountNum: 0, discountPrice: 0},
-      {name: 'Snickers ', price: 4, discountNum: 5, discountPrice: 12},
-      {name: 'Soda ', price: 2, discountNum: 0, discountPrice: 0},
+      {name: 'Snickers', price: 4, discountNum: 5, discountPrice: 12},
+      {name: 'Soda', price: 2, discountNum: 0, discountPrice: 0},
     ];
 
     this.dataForTable = new MatTableDataSource<ListItem>(this.listItems);
